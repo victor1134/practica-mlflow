@@ -1,0 +1,16 @@
+# Punto de entrada estándar del proyecto: mlflow run . --env-manager local
+# Carga antes .env (MLFLOW_TRACKING_URI y MLFLOW_EXPERIMENT_NAME) para
+# que el run padre quede en el mismo almacén que src/config.py.
+# --env-manager local reutiliza el entorno ya instalado (.envmlops).
+
+name: ventas-ev
+
+entry_points:
+  main:
+    command: "python src/train.py"
+  register:
+    command: "python src/register.py"
+  predict:
+    command: "python src/predict.py"
+  pipeline:
+    command: "python src/train.py && python src/register.py && python src/predict.py"
